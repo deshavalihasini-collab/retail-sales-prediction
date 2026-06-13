@@ -6,6 +6,14 @@
 
 ---
 
+## 🚀 Live Demo
+
+**👉 [Try the live app here](https://retail-sales-prediction-jhsdxyyqpfsnntfs88mgoz.streamlit.app/)**
+
+Enter transaction details (Sales, Discount, Category, Region, etc.) and get an instant profit prediction powered by a Random Forest model (R² = 0.975).
+
+---
+
 ## 📌 Project Overview
 
 This project performs end-to-end automated analysis of retail sales data and predicts profit using supervised machine learning models. It covers data generation, exploratory data analysis (EDA), feature engineering, model training, evaluation, and business insights — all on a Superstore-style retail dataset.
@@ -27,6 +35,10 @@ This project performs end-to-end automated analysis of retail sales data and pre
 retail-sales-prediction/
 │
 ├── retail_sales_analysis.py   # Main Python script (all sections)
+├── train_and_save_model.py    # Trains & saves model.pkl for the app
+├── app.py                      # Streamlit web app (live demo)
+├── model.pkl                   # Trained Random Forest model + encoders
+├── requirements.txt            # Dependencies for the app
 ├── README.md                  # Project documentation
 │
 └── outputs/
