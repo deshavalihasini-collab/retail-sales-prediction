@@ -122,6 +122,23 @@ st.markdown("""
         margin-left: 6px;
     }
 
+
+    /* Mobile top nav */
+    .mobile-nav {
+        display: none;
+        background: linear-gradient(180deg, #1a1f36 0%, #2d3561 100%);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+        .mobile-nav { display: block; }
+        [data-testid="stSidebar"] { display: none !important; }
+    }
+    @media (min-width: 769px) {
+        .stSelectbox[data-mobile-nav] { display: none; }
+    }
+
     /* Hide streamlit branding */
     #MainMenu, footer, header { visibility: hidden; }
 
@@ -234,6 +251,16 @@ SHIP_MODES  = sorted(df['Ship_Mode'].unique())
 if 'history' not in st.session_state:
     st.session_state.history = []
 
+# ── Mobile Navigation (shown on small screens) ───────────────────────────────
+mobile_pages = [
+    "🏠  Home", "📊  Dashboard", "🔮  Predict Profit",
+    "📈  Visualizations", "🗂️  Dataset Explorer",
+    "🤖  Model Performance", "📋  Prediction History", "ℹ️  About"
+]
+st.markdown("<div class='mobile-nav'>", unsafe_allow_html=True)
+mobile_page = st.selectbox("📱 Navigate", mobile_pages, label_visibility="collapsed", key="mobile_nav")
+st.markdown("</div>", unsafe_allow_html=True)
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("""
@@ -268,6 +295,9 @@ with st.sidebar:
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE: HOME
 # ═══════════════════════════════════════════════════════════════════════════════
+# Use mobile nav on small screens (fallback: both show same value)
+page = mobile_page
+
 if "Home" in page:
     st.markdown("""
     <div class="page-header">
