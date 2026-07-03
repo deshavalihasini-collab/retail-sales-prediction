@@ -436,15 +436,16 @@ elif "Predict" in page:
         <p>Enter transaction details to get an instant profit prediction</p>
     </div>""", unsafe_allow_html=True)
 
-    with st.form("prediction_form"):
-        c1, c2, c3 = st.columns(3)
-        with c1:
-            category = st.selectbox("📦 Category", CATEGORIES)
-        with c2:
-            sub_category = st.selectbox("🏷️ Sub-Category", SUB_CAT_MAP[category])
-        with c3:
-            region = st.selectbox("🌍 Region", REGIONS)
+    # Category & Sub-Category outside form so sub-cat updates dynamically
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        category = st.selectbox("📦 Category", CATEGORIES)
+    with c2:
+        sub_category = st.selectbox("🏷️ Sub-Category", SUB_CAT_MAP[category])
+    with c3:
+        region = st.selectbox("🌍 Region", REGIONS)
 
+    with st.form("prediction_form"):
         c1, c2, c3 = st.columns(3)
         with c1:
             segment = st.selectbox("👥 Customer Segment", SEGMENTS)
